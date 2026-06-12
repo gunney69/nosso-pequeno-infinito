@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gustavo &amp; [Nome dela] ✦</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --rose: #c2185b;
+      --rose-light: #f8bbd0;
+      --rose-mid: #e91e63;
+      --purple: #7b1fa2;
+      --purple-light: #e1bee7;
+      --purple-mid: #9c27b0;
+      --red: #b71c1c;
+      --red-light: #ffcdd2;
+      --dark: #1a1a2e;
+      --text: #2d2d2d;
+      --muted: #6b6b6b;
+      --bg: #fdf8f9;
+      --card: #ffffff;
+      --border: rgba(194, 24, 91, 0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .serif { font-family: 'Playfair Display', serif; }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1.1rem 2rem;
+      background: rgba(253, 248, 249, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--rose); }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem 5rem;
+      background: linear-gradient(160deg, #fdf8f9 0%, #f3e5f5 45%, #fce4ec 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(194,24,91,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rose);
+      border: 0.5px solid var(--rose);
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 1.8rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .hero h1 em {
+      color: var(--rose-mid);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    /* ── CONTADORES ── */
+    .counters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .counter-card {
+      background: #fff;
+      border: 0.5px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      min-width: 130px;
+    }
+
+    .counter-card .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      color: var(--rose);
+      line-height: 1;
+    }
+
+    .counter-card .label {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    .countdown-card {
+      background: linear-gradient(135deg, #7b1fa2, #c2185b);
+      border: none;
+    }
+
+    .countdown-card .num { color: #fff; }
+    .countdown-card .label { color: rgba(255,255,255,0.75); }
+
+    .countdown-card .sublabel {
+      font-size: 9px;
+      color: rgba(255,255,255,0.55);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── SEÇÕES ── */
+    .section-wrap {
+      padding: 5rem 2rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 4vw, 2.3rem);
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-divider {
+      width: 36px;
+      height: 1px;
+      background: var(--rose-mid);
+      margin-bottom: 2.5rem;
+      opacity: 0.45;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--purple-light), var(--rose-light), transparent);
+    }
+
+    .tl-item {
+      position: relative;
+      padding-bottom: 2.8rem;
+      padding-left: 2rem;
+    }
+
+    .tl-dot {
+      position: absolute;
+      left: -6px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--rose);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--rose-light);
+    }
+
+    .tl-date {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .tl-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--dark);
+      margin-bottom: 5px;
+    }
+
+    .tl-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    .tl-photo {
+      width: 100%;
+      max-width: 340px;
+      height: 200px;
+      background: linear-gradient(135deg, var(--purple-light), var(--rose-light));
+      border-radius: 14px;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: var(--muted);
+      border: 1px dashed rgba(194,24,91,0.25);
+      overflow: hidden;
+    }
+
+    .tl-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    /* ── GALERIA ── */
+    .gallery-bg {
+      background: linear-gradient(160deg, #f3e5f5 0%, #fce4ec 100%);
+      padding: 5rem 2rem;
+    }
+
+    .gallery-inner { max-width: 860px; margin: 0 auto; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, var(--purple-light), var(--rose-light));
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px dashed rgba(194,24,91,0.25);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .gallery-item:hover { transform: scale(1.02); }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.55));
+      color: #fff;
+      font-size: 11px;
+      padding: 1.5rem 0.75rem 0.6rem;
+      opacity: 0;
+      transition: opacity 0.2s;
+      text-align: center;
+    }
+
+    .gallery-item:hover .gallery-caption { opacity: 1; }
+
+    /* ── LUGARES ── */
+    .map-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .map-card {
+      background: #fff;
+      border: 0.5px solid var(--border);
+      border-radius: 14px;
+      padding: 1.1rem 1.25rem;
+    }
+
+    .map-card .pin {
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+    }
+
+    .map-card .place {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--dark);
+    }
+
+    .map-card .place-memo {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .map-embed {
+      width: 100%;
+      height: 300px;
+      border-radius: 14px;
+      border: 0.5px solid var(--border);
+      overflow: hidden;
+      background: var(--purple-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: var(--muted);
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .map-embed a {
+      font-size: 11px;
+      color: var(--purple);
+      text-decoration: none;
+      border: 0.5px solid var(--purple);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* ── CARTA ── */
+    .letter-card {
+      background: #fff;
+      border: 0.5px solid var(--rose-light);
+      border-radius: 20px;
+      padding: 2.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .letter-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--purple-mid), var(--rose-mid));
+    }
+
+    .letter-date {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.04em;
+    }
+
+    .letter-body {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      line-height: 2;
+      color: var(--dark);
+      font-style: italic;
+      white-space: pre-line;
+    }
+
+    .letter-sig {
+      margin-top: 2.2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--rose);
+    }
+
+    .letter-deco {
+      position: absolute;
+      bottom: 1.8rem;
+      right: 2rem;
+      font-size: 1.6rem;
+      opacity: 0.1;
+      letter-spacing: 4px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 0.5px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    footer span { color: var(--rose); }
+
+    /* ── ANIMAÇÕES ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVO ── */
+    @media (max-width: 600px) {
+      nav { gap: 1rem; }
+      .letter-card { padding: 1.8rem; }
+      .counters { gap: 0.75rem; }
+      .counter-card { min-width: 110px; padding: 1.2rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#inicio">Início</a>
+    <a href="#historia">Nossa história</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#lugares">Lugares</a>
+    <a href="#carta">Cartinha</a>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="inicio" class="hero">
+    <div class="hero-badge">Para sempre ✦</div>
+    <h1 class="serif">Gustavo <em>&amp;</em> [Nome dela]</h1>
+    <p class="hero-sub">Uma história de amor que vale cada segundo ✦ Desde [dd/mm/aaaa]</p>
+
+    <div class="counters">
+      <div class="counter-card">
+        <div class="num" id="dias-juntos">—</div>
+        <div class="label">Dias juntos</div>
+      </div>
+      <div class="counter-card">
+        <div class="num" id="horas-juntos">—</div>
+        <div class="label">Horas de amor</div>
+      </div>
+      <div class="counter-card countdown-card">
+        <div class="num" id="dias-aniv">—</div>
+        <div class="label">Dias para o aniversário</div>
+        <div class="sublabel">30 de julho de 2026 ✦</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TIMELINE ── -->
+  <div id="historia" class="section-wrap">
+    <p class="section-label reveal">Nossa jornada</p>
+    <h2 class="section-title serif reveal">Nossa história</h2>
+    <div class="section-divider reveal"></div>
+
+    <div class="timeline">
+
+      <!-- MOMENTO 1 -->
+      <div class="tl-item reveal">
+        <div class="tl-dot" style="background: var(--rose);"></div>
+        <div class="tl-date">[dd/mm/aaaa]</div>
+        <div class="tl-title serif">O primeiro encontro</div>
+        <div class="tl-desc">
+          Descreva aqui como foi a primeira vez que se encontraram. O lugar, o que sentiram, o que disseram — cada detalhe conta.
+        </div>
+        <div class="tl-photo">
+          <!-- SUBSTITUA por: <img src="foto1.jpg" alt="Primeiro encontro" /> -->
+          📸 Adicione sua foto aqui
+        </div>
+      </div>
+
+      <!-- MOMENTO 2 -->
+      <div class="tl-item reveal">
+        <div class="tl-dot" style="background: var(--purple);"></div>
+        <div class="tl-date">[dd/mm/aaaa]</div>
+        <div class="tl-title serif">O início de tudo</div>
+        <div class="tl-desc">
+          O dia em que se tornaram namorados. Aquele momento especial que mudou tudo para sempre.
+        </div>
+        <div class="tl-photo">
+          <!-- SUBSTITUA por: <img src="foto2.jpg" alt="Início do namoro" /> -->
+          📸 Adicione sua foto aqui
+        </div>
+      </div>
+
+      <!-- MOMENTO 3 -->
+      <div class="tl-item reveal">
+        <div class="tl-dot" style="background: var(--red);"></div>
+        <div class="tl-date">[dd/mm/aaaa]</div>
+        <div class="tl-title serif">[Título do momento]</div>
+        <div class="tl-desc">
+          Descreva mais um momento inesquecível de vocês — uma viagem, uma data especial, algo que ficou marcado.
+        </div>
+        <div class="tl-photo">
+          <!-- SUBSTITUA por: <img src="foto3.jpg" alt="Descrição" /> -->
+          📸 Adicione sua foto aqui
+        </div>
+      </div>
+
+      <!-- MOMENTO 4 — adicione quantos quiser no mesmo formato -->
+      <div class="tl-item reveal">
+        <div class="tl-dot" style="background: var(--rose);"></div>
+        <div class="tl-date">[dd/mm/aaaa]</div>
+        <div class="tl-title serif">[Título do momento]</div>
+        <div class="tl-desc">
+          Mais um capítulo lindo dessa história. Continue adicionando momentos conforme a vida de vocês acontece.
+        </div>
+        <div class="tl-photo">
+          <!-- SUBSTITUA por: <img src="foto4.jpg" alt="Descrição" /> -->
+          📸 Adicione sua foto aqui
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── GALERIA ── -->
+  <div id="galeria" class="gallery-bg">
+    <div class="gallery-inner">
+      <p class="section-label reveal">Memórias</p>
+      <h2 class="section-title serif reveal">Nossa galeria</h2>
+      <div class="section-divider reveal"></div>
+
+      <div class="gallery-grid">
+
+        <!-- SUBSTITUA cada div.gallery-item por:
+             <div class="gallery-item">
+               <img src="suafoto.jpg" alt="Legenda" />
+               <div class="gallery-caption">Legenda da foto</div>
+             </div>
+        -->
+
+        <div class="gallery-item reveal">📸<br><small style="margin-top:6px;color:var(--muted)">Foto 1</small><div class="gallery-caption">Legenda aqui</div></div>
+        <div class="gallery-item reveal">📸<br><small style="margin-top:6px;color:var(--muted)">Foto 2</small><div class="gallery-caption">Legenda aqui</div></div>
+        <div class="gallery-item reveal">📸<br><small style="margin-top:6px;color:var(--muted)">Foto 3</small><div class="gallery-caption">Legenda aqui</div></div>
+        <div class="gallery-item reveal">📸<br><small style="margin-top:6px;color:var(--muted)">Foto 4</small><div class="gallery-caption">Legenda aqui</div></div>
+        <div class="gallery-item reveal">📸<br><small style="margin-top:6px;color:var(--muted)">Foto 5</small><div class="gallery-caption">Legenda aqui</div></div>
+        <div class="gallery-item reveal">📸<br><small style="margin-top:6px;color:var(--muted)">Foto 6</small><div class="gallery-caption">Legenda aqui</div></div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── LUGARES ── -->
+  <div id="lugares" class="section-wrap">
+    <p class="section-label reveal">Onde fomos</p>
+    <h2 class="section-title serif reveal">Nossos lugares</h2>
+    <div class="section-divider reveal"></div>
+
+    <div class="map-list">
+
+      <!-- Adicione ou remova cards conforme seus lugares -->
+      <div class="map-card reveal">
+        <div class="pin">📍</div>
+        <div class="place serif">[Lugar 1]</div>
+        <div class="place-memo">[ex: Onde nos conhecemos]</div>
+      </div>
+      <div class="map-card reveal">
+        <div class="pin">📍</div>
+        <div class="place serif">[Lugar 2]</div>
+        <div class="place-memo">[ex: Primeiro jantar juntos]</div>
+      </div>
+      <div class="map-card reveal">
+        <div class="pin">📍</div>
+        <div class="place serif">[Lugar 3]</div>
+        <div class="place-memo">[ex: Nossa primeira viagem]</div>
+      </div>
+      <div class="map-card reveal">
+        <div class="pin">📍</div>
+        <div class="place serif">[Lugar 4]</div>
+        <div class="place-memo">[ex: Nosso lugar favorito]</div>
+      </div>
+
+    </div>
+
+    <!-- MAPA: vá em mymaps.google.com, crie seu mapa, clique em ⋮ > Incorporar no site
+         e cole o <iframe ...> aqui no lugar do bloco abaixo -->
+    <div class="map-embed reveal">
+      <span>🗺️ Cole aqui o iframe do Google My Maps</span>
+      <a href="https://mymaps.google.com" target="_blank" rel="noopener">Criar meu mapa →</a>
+    </div>
+  </div>
+
+  <!-- ── CARTA ── -->
+  <div id="carta" class="section-wrap">
+    <p class="section-label reveal">Do fundo do meu coração</p>
+    <h2 class="section-title serif reveal">Uma cartinha pra você</h2>
+    <div class="section-divider reveal"></div>
+
+    <div class="letter-card reveal">
+      <div class="letter-date">Jundiaí, [data de hoje]</div>
+      <div class="letter-body">
+[Nome dela],
+
+Escreva aqui sua carta — do jeito que você fala, sem se preocupar em ser perfeito.
+
+Pode ser sobre o primeiro dia que você a viu e o que sentiu. Sobre os momentos pequenos que ninguém mais viu, mas que você nunca vai esquecer. Sobre o jeito que ela ri, o jeito que ela te olha.
+
+Pode ser sobre o que você sonha para vocês dois.
+
+Esse espaço é só seu — e dela. ♡
+      </div>
+      <div class="letter-sig">Com todo o meu amor, Gustavo ✦</div>
+      <div class="letter-deco">♡ ♡ ♡</div>
+    </div>
+  </div>
+
+  <footer>
+    feito com <span>♡</span> por Gustavo — só para você, [nome dela]
+  </footer>
+
+  <script>
+    /* ── CONTADORES ── */
+    /* Substitua a linha abaixo pela data de início do namoro de vocês.
+       ATENÇÃO: meses em JS começam do 0 (janeiro = 0, julho = 6, dezembro = 11)
+       Exemplo: 30 de julho de 2025 → new Date(2025, 6, 30) */
+    const INICIO_NAMORO = new Date(2025, 6, 30); /* ← EDITE AQUI */
+    const ANIVERSARIO   = new Date(2026, 6, 30);
+
+    function atualizarContadores() {
+      const agora = new Date();
+      const msJuntos  = agora - INICIO_NAMORO;
+      const msAniv    = ANIVERSARIO - agora;
+
+      const dias  = Math.floor(msJuntos  / 86400000);
+      const horas = Math.floor(msJuntos  / 3600000);
+      const aniv  = Math.ceil(msAniv     / 86400000);
+
+      document.getElementById('dias-juntos').textContent =
+        msJuntos >= 0 ? dias.toLocaleString('pt-BR') : '—';
+
+      document.getElementById('horas-juntos').textContent =
+        msJuntos >= 0 ? horas.toLocaleString('pt-BR') : '—';
+
+      document.getElementById('dias-aniv').textContent =
+        msAniv > 0 ? aniv : '🎉';
+    }
+
+    atualizarContadores();
+    setInterval(atualizarContadores, 60000);
+
+    /* ── SCROLL REVEAL ── */
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
